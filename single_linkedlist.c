@@ -20,8 +20,9 @@ void display(struct node **head)
 }
 */
 
-//INSERT NODE AT THE END OF THE LINKEDLIST
 
+//INSERT NODE AT THE END OF THE LINKEDLIST
+/*
 void insertAtEnd(struct node **head)
 {
 	struct node *temp=(struct node *)malloc(sizeof(struct node *));
@@ -39,19 +40,50 @@ void insertAtEnd(struct node **head)
 	{
 		while(p->nxt !=NULL)
 		{
-			p->nxt;
+			p=p->nxt;
 		}
 		p->nxt=temp;
 	}
 	printf("Element inserted at the end was successfully completed\n");
 }
+*/
+//INSERT AT SPECIFIED POSITION
+void insertAtSpecifiedPosition(struct node **head)
+{
+	int position,value;
+	printf("Enter position and value:\n");
+	scanf("%d%d",&position,&value);
+	int count=1;
+	struct node *p=*head;
+	while(p!=NULL)
+	{
+		if(count==position)
+		{
+			break;
+		}
+		p=p->nxt;
+		count++;
+	}
+	if(p==NULL)
+	{
+		printf("Invalid position\n");
+	}
+	else
+	{
+		struct node *temp=(struct node*)malloc(sizeof(struct node*));
+		temp->data=value;
+		temp->nxt=p->nxt;
+		p->nxt=temp;
+	}
+}
+
 int main()
 {
 	struct node *head=NULL;
 	while(1)
 	{
 		int choice;
-		printf("1) Insert at end 2) Display 3)exit\n");
+		printf("1) Insert at end 2) Insert at specified position 3) Display 4)exit\n");
 		printf("Enter your choice:");
 		scanf("%d",&choice);
 		if(choice==1)
@@ -59,6 +91,10 @@ int main()
 			insertAtEnd(&head);
 		}
 		else if(choice==2)
+		{
+			insertAtSpecifiedPosition(&head);
+		}
+		else if(choice==3)
 		{
 			display(&head);
 		}

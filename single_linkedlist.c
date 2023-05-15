@@ -4,7 +4,7 @@ struct node{
 	int data;
 	struct node *nxt;
 };
-
+/*
 void display(struct node **head)
 {
 	struct node *p=*head;
@@ -19,7 +19,7 @@ void display(struct node **head)
 	}
 }
 
-/*
+
 
 //INSERT NODE AT THE END OF THE LINKEDLIST
 
@@ -76,7 +76,7 @@ void insertAtSpecifiedPosition(struct node **head)
 		p->nxt=temp;
 	}
 }
-*/
+
 //DELETION OF DATA
 void deletionOfData(struct node **head)
 {
@@ -109,14 +109,41 @@ void deletionOfData(struct node **head)
 		free(p);
 	}
 }
+*/
 
+//SEARCHING OPERATION 
+void search(struct node **head)
+{
+	int target_data;
+	printf("Enter which value you want to search in Linkedlist:");
+	scanf("%d",&target_data);
+	int flag=-1;
+	struct node *p=*head;
+	while(p!=NULL)
+	{
+		if(p->data==target_data)
+		{
+			flag=1;
+			break;
+		}
+		p=p->nxt;
+	}
+	if(flag==-1)
+	{
+		printf("Element was found\n");
+	}
+	else
+	{
+		printf("Element was not found\n");
+	}
+}
 int main()
 {
 	struct node *head=NULL;
 	while(1)
 	{
 		int choice;
-		printf("1) Insert at end 2) Insert at specified position 3) Display 4)Deletion of data 5) exit\n");
+		printf("1) Insert at end 2) Insert at specified position 3) Display 4)Deletion of data 5) Searching 6)exit\n");
 		printf("Enter your choice:");
 		scanf("%d",&choice);
 		if(choice==1)
@@ -134,6 +161,10 @@ int main()
 		else if(choice==4)
 		{
 			deletionOfData(&head);
+		}
+		else if(choice==5)
+		{
+			search(&head);
 		}
 		else
 		{

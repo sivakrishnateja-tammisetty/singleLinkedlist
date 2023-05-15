@@ -4,7 +4,7 @@ struct node{
 	int data;
 	struct node *nxt;
 };
-/*
+
 void display(struct node **head)
 {
 	struct node *p=*head;
@@ -18,11 +18,11 @@ void display(struct node **head)
 	p=p->nxt;
 	}
 }
-*/
 
+/*
 
 //INSERT NODE AT THE END OF THE LINKEDLIST
-/*
+
 void insertAtEnd(struct node **head)
 {
 	struct node *temp=(struct node *)malloc(sizeof(struct node *));
@@ -46,7 +46,7 @@ void insertAtEnd(struct node **head)
 	}
 	printf("Element inserted at the end was successfully completed\n");
 }
-*/
+
 //INSERT AT SPECIFIED POSITION
 void insertAtSpecifiedPosition(struct node **head)
 {
@@ -76,6 +76,39 @@ void insertAtSpecifiedPosition(struct node **head)
 		p->nxt=temp;
 	}
 }
+*/
+//DELETION OF DATA
+void deletionOfData(struct node **head)
+{
+	int target;
+	printf("Enter target value:");
+	scanf("%d",&target);
+	struct node *p=*head;
+	struct node *q=NULL;
+	while(p!=NULL)
+	{
+		if(p->data==target)
+		{
+			break;
+		}
+		q=p;
+		p=p->nxt;
+	}
+	if(p==NULL)
+	{
+		printf("Target value is already not present in linked list\n");
+	}
+	else if(q==NULL)
+	{
+		*head=p->nxt;
+	}
+	else
+	{
+		q->nxt=p->nxt;
+		p->nxt=NULL;
+		free(p);
+	}
+}
 
 int main()
 {
@@ -83,7 +116,7 @@ int main()
 	while(1)
 	{
 		int choice;
-		printf("1) Insert at end 2) Insert at specified position 3) Display 4)exit\n");
+		printf("1) Insert at end 2) Insert at specified position 3) Display 4)Deletion of data 5) exit\n");
 		printf("Enter your choice:");
 		scanf("%d",&choice);
 		if(choice==1)
@@ -97,6 +130,10 @@ int main()
 		else if(choice==3)
 		{
 			display(&head);
+		}
+		else if(choice==4)
+		{
+			deletionOfData(&head);
 		}
 		else
 		{
